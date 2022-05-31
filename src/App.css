@@ -1,38 +1,66 @@
-.App {
-  text-align: center;
+body {
+background: #f3f5f8;
+  color: #fff;
+  overflow-x: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.movie-app > .movie-body {
+	overflow-x: auto;
+	flex-wrap: nowrap;
+	background: #f3f5f8;
+}
+.movie-app > .movie-header {
+	background: #fff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.image-container {
+	position: relative;
+	transition: transform 0.2s;
+}
+
+.image-container:hover {
+	cursor: pointer;
+	transform: scale(1.1);
+}
+
+.image-container:hover .overlay {
+	opacity: 1;
+}
+
+.overlay {
+	position: absolute;
+	background: rgba(0, 0, 0, 0.8);
+	width: 100%;
+	transition: 0.5s ease;
+	opacity: 0;
+	bottom: 0;
+	font-size: 20px;
+	padding: 20px;
+	text-align: center;
+}
+
+
+/* Style the search box inside the navigation bar */
+.searchInput  {
+	float: right;
+	padding: 6px;
+	border: none;
+	margin-top: 8px;
+	margin-right: 16px;
+	font-size: 17px;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  
+  /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+  @media screen and (max-width: 600px) {
+	.searchInput{
+	  float: none;
+	  display: block;
+	  text-align: left;
+	  width: 100%;
+	  margin: 0;
+	  padding: 14px;
+	}
+	.searchInput{
+	  border: 1px solid #ccc;
+	}
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
