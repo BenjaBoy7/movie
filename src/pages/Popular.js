@@ -103,7 +103,7 @@ const PopularMovies = () => {
   useEffect(() => {
     dispatch(loadMovies());
     console.log("movies", movies)
-  }, []);
+  });
 
   return (
     <Wrapper>

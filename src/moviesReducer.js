@@ -46,19 +46,12 @@ export const saveMovies = () => async (dispatch, getState) => {
 }
 
 export const loadMovies = () => async (dispatch, getState) => {
-  // const movies = await fetch("").then(res => res.json())
-  // console.log(movies)
-  await axios.get("https://api.themoviedb.org/3/discover/movie?api_key=79e1cf6f245dbb7517eb72c3742a5426&primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22").then(res =>
-     dispatch(setMovies(res.movies.results)),
-    )
-
+    let urlPopular = "https://api.themoviedb.org/3/discover/movie?api_key=79e1cf6f245dbb7517eb72c3742a5426&primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22"
+    const movies = await fetch(urlPopular).then(res => res.json())
+    dispatch(setMovies(movies.results))
 }
 export const searchMovies = (query) => async (dispatch, getState) => {
-  const url = query == null || query == "" ? `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1` : `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`;
-
-  const movies = await fetch(url).then(res => res.json())
-  dispatch(setMovies(movies.results))
-  console.log(url)
-
-  
+  const urlSearch = query == null || query == "" ? `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1` : `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`;
+  const movies = await fetch(urlSearch).then(res => res.json())
+  dispatch(setMovies(movies.results)) 
 } 
