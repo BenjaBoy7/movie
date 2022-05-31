@@ -1,7 +1,5 @@
 import { ADD_MOVIE, setMovies, SET_MOVIES, REMOVE_FAVORITE } from "./actions"
 import { API_KEY } from "./componets/Helper/constants"
-import ReactLoading from 'react-loading';
-import axios from "axios";
 
 const initialState = {
   movies: [],
@@ -46,12 +44,14 @@ export const saveMovies = () => async (dispatch, getState) => {
 }
 
 export const loadMovies = () => async (dispatch, getState) => {
-    let urlPopular = "https://api.themoviedb.org/3/discover/movie?api_key=79e1cf6f245dbb7517eb72c3742a5426&primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22"
-    const movies = await fetch(urlPopular).then(res => res.json())
-    dispatch(setMovies(movies.results))
+  const movies = await fetch("https://api.themoviedb.org/3/discover/movie?api_key=79e1cf6f245dbb7517eb72c3742a5426&primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22").then(res => res.json())
+  dispatch(setMovies(movies.results))
+  console.log(movies)
 }
 export const searchMovies = (query) => async (dispatch, getState) => {
-  const urlSearch = query == null || query == "" ? `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1` : `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`;
-  const movies = await fetch(urlSearch).then(res => res.json())
-  dispatch(setMovies(movies.results)) 
+  const url = query == null || query == "" ? `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1` : `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`;
+
+  const movies = await fetch(url).then(res => res.json())
+  dispatch(setMovies(movies.results))
+  console.log(url)
 } 
