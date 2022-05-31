@@ -22,7 +22,7 @@ function Navbar() {
         <LeftContainer>
           <NavbarLinkContainer>
             <NavbarLink to="/"> All Movies</NavbarLink>
-            <NavbarLink to="/favourites"> WatchList</NavbarLink>
+            <NavbarLink to="/favourites"> Watchlist</NavbarLink>
             {/* <input className="searchInput" type="text" placeholder="Search.." /> */}
             <OpenLinksButton
               onClick={() => {
@@ -35,7 +35,8 @@ function Navbar() {
         </LeftContainer>
         <RightContainer>
           {/* <NavInput/> */}
-          <Logo src={LogoImg}></Logo>
+          {/* <Logo src={LogoImg}></Logo> */}
+          <label>Developed By: Biniam Abera</label>
         </RightContainer>
       </NavbarInnerContainer>
       {extendNavbar && (

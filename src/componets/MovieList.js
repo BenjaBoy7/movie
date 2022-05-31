@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import MovieCard from "./MovieCard";
 import AddFavourite from "./AddFavourite";
+import ReactLoading from 'react-loading';
 
 const MovieContainer = styled.div`
   display: flex;
@@ -34,17 +35,16 @@ const MovieContainer = styled.div`
   }
 `;
 
+
 function MovieList(props) {
-
-//   const renderMovieCards = props.map((movie) => (
-//     <MovieCard key={movie.id} movie={movie}></MovieCard>
-//   ));
-
   const renderMovieCards =
    <>
-    {props.movies.map((movie, index)=>
+    {props.movies?
+     props.movies.map((movie, index)=>
         <MovieCard key={movie.id} movie={movie} favouriteComponent={AddFavourite}></MovieCard>
-    )}
+    ):
+    <ReactLoading type={"spin"} color="#000" />
+  }
    </>
 
   return <MovieContainer>{renderMovieCards}</MovieContainer>;

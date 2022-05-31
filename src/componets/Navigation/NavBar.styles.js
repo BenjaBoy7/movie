@@ -39,9 +39,11 @@ export const NavbarLinkContainer = styled.div`
 export const NavbarLink = styled(Link)`
   color: white;
   font-size: x-large;
-  font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
   margin: 10px;
+  :hover {
+    color: #ffdd00
+  }
   @media (max-width: 700px) {
     display: none;
   }
@@ -50,7 +52,6 @@ export const NavbarLink = styled(Link)`
 export const NavbarLinkExtended = styled(Link)`
   color: white;
   font-size: x-large;
-  font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
   margin: 10px;
 `;

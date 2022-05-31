@@ -12,7 +12,7 @@ export const setMovies = (movies) => ({
   payload: movies,
 });
 
-export const removeFavourite = (favourite) => ({
+export const removeFavourite = (data) => ({
   type: REMOVE_FAVORITE,
-  payload: favourite,
+  payload: data,
 });

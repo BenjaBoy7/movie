@@ -25,10 +25,13 @@ const CardContainer = styled.div`
   transition: transform;
   transition-duration: 0.25s;
   color: white;
-
+  border-radius: 16px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
   :hover {
     cursor: pointer;
     transform: scale(1.08);
+    // background: rgba(0, 0, 0, 0.8);
   }
 
   @media screen and (max-width: 3000px) {
@@ -60,7 +63,13 @@ const StyledImg = styled.img`
 vertical-align: middle;
 border-style: none;
   width: 100%;
-  height: 100%;
+  height: 87%;
+  border-radius: 10px 10px 0 0;
+  :hover {
+    cursor: pointer;
+    // transform: scale(1.08);
+    background: rgba(0, 0, 0, 0.8);
+  }
 `;
 
 const StyledRuntime = styled.div`
@@ -88,20 +97,54 @@ const StyledRating = styled.div`
   background-color: rgba(0, 0, 0, 0.808);
 `;
 
-const AddFavouriteStyled = styled.div`
+const BottomWrapper = styled.div`
+// border-radius: 16px;
 position: absolute;
-background: rgba(0, 0, 0, 0.8);
+// background: rgba(0, 0, 0, 0.8);
+background : #f3f5f8;
+color: #000;
 width: 100%;
 transition: 0.5s ease;
 opacity: 1;
 bottom: 0;
 font-size: 20px;
-padding: 20px;
-text-align: center;
-align-items: center!important;
-justify-content: center!important;
+// padding: 20px;
+// text-align: right;
+// right: 0;
+// align-items: center!important;
+// justify-content: center!important;
 display: flex!important;
 `;
+
+
+const AddFavouriteStyled = styled.div`
+// border-radius: 16px;
+position: absolute;
+// background: rgba(0, 0, 0, 0.8);
+background : #f3f5f8;
+color: #000;
+width: 20%;
+transition: 0.5s ease;
+opacity: 1;
+bottom: 0;
+font-size: 15px;
+right: 0;
+display: inline-block;
+
+`;
+
+const MovieTitle = styled.div`
+position: absolute;
+display: inline-block;
+width: 80%;
+bottom: 0;
+left: 0;
+font-size: 15px;
+padding: 10px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+`
 
 // const RatingIcon = styled(FontAwesomeIcon).attrs({ icon: faStar })`
 //   color: gold;
@@ -110,10 +153,12 @@ display: flex!important;
 
 const MovieCard = props => {
   const dispatch = useDispatch();
+  const { favourite } = useSelector((state) => state);
+
   //   const { dispatch } = useContext(CTX);
   const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
 
-  const { poster_path, title, vote_average } = props.movie;
+  const { poster_path, title, vote_average, id, original_title, overview } = props.movie;
   //   const { runtime } = props.movie.details;
 
   const imageURL = `https://image.tmdb.org/t/p/w780${poster_path}`;
@@ -161,6 +206,14 @@ const MovieCard = props => {
     }
   };
 
+  let isShowAdd = true;
+
+  favourite.forEach((f) => {
+    if (f.id === id) {
+      isShowAdd = false;
+    }
+  })
+
   return (
     <>
       <CardContainer>
@@ -172,9 +225,14 @@ const MovieCard = props => {
         {/* {showRuntime()} */}
         {showRating()}
         {/* {props.removeMode && <RemoveFavoriteButton movie={props.movie} />} */}
-        <AddFavouriteStyled> 
-            <button onClick={()=>onAddMovie(props.movie)}  class="btn btn-primary"><i class="fa fa-heart"></i>  Add Watchlist</button>
-        </AddFavouriteStyled>
+        <BottomWrapper>
+          <MovieTitle>{original_title}</MovieTitle>
+          <AddFavouriteStyled>
+            {isShowAdd ? <button onClick={() => onAddMovie(props.movie)} class="btn btn-primary"><i class="fa fa-heart"></i></button> :
+              <button class="btn btn-danger "><i class="fa fa-heart"></i></button>}
+          </AddFavouriteStyled>
+        </BottomWrapper>
+
       </CardContainer>
     </>
   );

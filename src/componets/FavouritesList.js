@@ -44,16 +44,6 @@ function FavouriteList(props) {
     const favourite = useSelector((state) => state.favourite);
     console.log(favourite)
 
-//   const renderMovieCards = props.map((movie) => (
-//     <MovieCard key={movie.id} movie={movie}></MovieCard>
-//   ));
-
-  
-  // useEffect(() => {
-  //   // dispatch(loadFavourites());
-  //  console.log("Favourites", favourite)
-  // }, []);
-
   const renderMovieCards =
    <>
     {favourite.map((favourite, index)=>

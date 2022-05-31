@@ -8,7 +8,7 @@ import {
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { addMovie } from "../actions";
-import { saveMovies, loadMovies } from "../moviesReducer";
+import { saveMovies, loadMovies, searchMovies } from "../moviesReducer";
 
 import axios from "axios";
 import { TMDB_API_KEY } from "../api/key";
@@ -16,6 +16,7 @@ import { TMDB_API_KEY } from "../api/key";
 import { API_KEY, baseUrlApi } from "../componets/Helper/constants";
 import MovieList from "../componets/MovieList";
 import { NavInput } from "../componets/Navigation/NavBar.styles";
+import ReactLoading from "react-loading";
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -37,59 +38,88 @@ const PageText = styled.h1`
 `;
 
 const SearchBox = styled.div`
- 
+   width: 400px;
+   margin: 20px auto;
+   display: flex;
+  
+   @media screen and (max-width: 3000px) {
+    flex: 0 0 10%;
+  }
+
+  @media screen and (max-width: 2000px) {
+    flex: 0 0 13%;
+  }
+
+  @media screen and (max-width: 1440px) {
+    flex: 1 0 15%;
+  }
+
+  @media screen and (max-width: 1025px) {
+    flex: 1 0 25%;
+  }
+
+  @media screen and (max-width: 640px) {
+    flex: 1 0 25%;
+  }
+
+  @media screen and (max-width: 361px) {
+    flex: 1 0 33%;
+  }
 `;
+const SearchBoxInput = styled.input`
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid #eee;
+  border-radius: 15px
+
+`
+export const Section = styled('div')`
+flex flex-wrap content-center justify-center w-100 h-100 bg-blue`;
+
+export const Article = styled('div')`
+w-25 ma2 h4 items-center justify-center flex flex-column flex-wrap`;
+
+export const Prop = styled('h3')`
+f5 f4-ns mb0 white`;
+
+export const Title = styled('h1') `
+f4 f3-ns white w-100 tc`;
+
+
 const PopularMovies = () => {
   const movies = useSelector((state) => state.movies);
   const dispatch = useDispatch();
+  const [serchText, setSearchText] = useState(null)
 
   // const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
 
-  // const url = `${baseUrlApi}discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`;
-  // const apiurl = "https://api.themoviedb.org/3/discover/movie?api_key=79e1cf6f245dbb7517eb72c3742a5426&primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22"
-
-  // const fetchMovies = async () => {
-  //   setIsLoading(true)
-  //   setIsError(false)
-
-  //   await axios.get(url).then(res=>(
-  //     setIsLoading(false),
-  //     setMovies(res.data.results)
-  //   )).catch(
-  //     setIsError(true)
-  //   );
-  // }
-
-  // useEffect(() => {
-  //   fetchMovies();
-  // }, [url]);
-
-
-
+  function searchMovie(e) {
+    dispatch(searchMovies(e.target.value));
+  }
 
   useEffect(() => {
     dispatch(loadMovies());
+    console.log("movies", movies)
   }, []);
 
   return (
     <Wrapper>
-      <PageText>Search</PageText>
-      <div class="col-sm-4">
-         <label for="exampleInputEmail1">Email address</label>
-         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
-      </div>
+      <SearchBox>
+         {/* <PageText>Search</PageText> */}
+        <SearchBoxInput type="text" class="form-control" onChange={searchMovie} placeholder="Enter Key words" />
+      </SearchBox>
       {isError && <div>An error occured, please try again.</div>}
-      {isLoading ? (
-        // <Loader />
-        null
-      ) : (
+        {/* {movies.length <=0 ? (
+          <ReactLoading type={"spin"} style={{top: '50%', left: '50%', width: 100, height: 100, margin: 'auto' }}color="#000" />
+        ) : ( */}
         <>
           <MovieList movies={movies} />
 
         </>
-      )}
+      {/* )} */}
     </Wrapper>
   );
 };
