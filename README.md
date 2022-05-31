@@ -17,7 +17,7 @@ You may also see any lint errors in the console.
 # Demo
 
 Launches the test runner in the interactive watch mode.\
-See the section about [Demo Link]([(https://majestic-yeot-3bdfdb.netlify.app/)]) for more information.
+See the section about [Demo Link](https://majestic-yeot-3bdfdb.netlify.app/) for more information.
 
 ### `npm run build`
 
