@@ -36,13 +36,13 @@ function Navbar() {
         <RightContainer>
           {/* <NavInput/> */}
           {/* <Logo src={LogoImg}></Logo> */}
-          <label>Developed By: Biniam Abera</label>
+          {/* <label>Developed By: Biniam Abera</label> */}
         </RightContainer>
       </NavbarInnerContainer>
       {extendNavbar && (
         <NavbarExtendedContainer>
           <NavbarLinkExtended to="/"> All Movies</NavbarLinkExtended>
-          <NavbarLinkExtended to="/favourite">Watchlist</NavbarLinkExtended>
+          <NavbarLinkExtended to="/favourites">Watchlist</NavbarLinkExtended>
         </NavbarExtendedContainer>
       )}
     </NavbarContainer>

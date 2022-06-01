@@ -23,7 +23,8 @@ const Wrapper = styled.div`
   max-width: 1800px;
 
   @media screen and (max-width: 500px) {
-    margin-top: 3em;
+    // margin-top: 3em;
+    width: 100%;
   }
 `;
 
@@ -42,37 +43,20 @@ const SearchBox = styled.div`
    margin: 20px auto;
    display: flex;
   
-   @media screen and (max-width: 3000px) {
-    flex: 0 0 10%;
-  }
-
-  @media screen and (max-width: 2000px) {
-    flex: 0 0 13%;
-  }
-
-  @media screen and (max-width: 1440px) {
-    flex: 1 0 15%;
-  }
-
-  @media screen and (max-width: 1025px) {
-    flex: 1 0 25%;
-  }
-
-  @media screen and (max-width: 640px) {
-    flex: 1 0 25%;
-  }
-
-  @media screen and (max-width: 361px) {
-    flex: 1 0 33%;
+   @media screen and (max-width: 1025px) {
+    width: 100%;
   }
 `;
 const SearchBoxInput = styled.input`
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  border: 2px solid #eee;
-  border-radius: 15px
+    margin: 0 auto;
+    padding: 10px 10px;
+    border: 3px solid #eee;
+    border-radius: 12px;
+    width: 95%;
+  @media screen and (max-width: 1025px) {
+    min-width: 95%;
 
+  }
 `
 export const Section = styled('div')`
 flex flex-wrap content-center justify-center w-100 h-100 bg-blue`;
@@ -108,7 +92,6 @@ const PopularMovies = () => {
   return (
     <Wrapper>
       <SearchBox>
-         {/* <PageText>Search</PageText> */}
         <SearchBoxInput type="text" class="form-control" onChange={searchMovie} placeholder="Enter Key words" />
       </SearchBox>
       {isError && <div>An error occured, please try again.</div>}

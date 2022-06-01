@@ -144,7 +144,36 @@ padding: 10px;
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
+@media screen and (max-width: 640px) {
+  // flex: 1 0 25%;
+   padding: 0px;
+  // margin: 1px;
+  font-size: 12px;
+}
 `
+const WatchListAdded = styled.button`
+display: inline-block;
+font-weight: 400;
+line-height: 1.5;
+color: #dc3545;
+text-align: center;
+text-decoration: none;
+vertical-align: middle;
+cursor: pointer;
+-webkit-user-select: none;
+user-select: none;
+background-color: transparent;
+border: 1px solid transparent;
+padding: 0.375rem 0.75rem;
+font-size: 1rem;
+border-radius: 0.25rem;
+@media screen and (max-width: 640px) {
+  // flex: 1 0 25%;
+  // padding: 2px;
+  // margin: 1px;
+  font-size: 15px;
+}
+`;
 
 const FavouriteCard = (props) => {
   const dispatch = useDispatch();
@@ -222,7 +251,7 @@ const FavouriteCard = (props) => {
         <BottomWrapper>
           <MovieTitle>{original_title}</MovieTitle>
           <RemoveFavouriteStyled>
-            <button onClick={() => onRemoveFavourites(id)} class="btn btn-danger"><i class="fa fa-close"></i></button> 
+            <WatchListAdded onClick={() => onRemoveFavourites(id)} class="btn btn-danger"><i class="fa fa-close"></i></WatchListAdded> 
           </RemoveFavouriteStyled>
         </BottomWrapper>
       </CardContainer>

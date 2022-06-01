@@ -1,7 +1,21 @@
+html, body {
+	overflow-x: hidden;
+  }
+
+  
+ *{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -msbox-sizing: border-box;
+}
 body {
 background: #f3f5f8;
   /* color: #fff; */
-  overflow-x: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden!important;
+  width:100%;
+  max-width:100%;
+
 }
 .movie-app > .movie-body {
 	overflow-x: auto;

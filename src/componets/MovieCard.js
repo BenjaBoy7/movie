@@ -52,10 +52,14 @@ const CardContainer = styled.div`
 
   @media screen and (max-width: 640px) {
     flex: 1 0 25%;
+    border-radius: 0px;
+
   }
 
   @media screen and (max-width: 361px) {
     flex: 1 0 33%;
+    border-radius: 0px;
+
   }
 `;
 
@@ -114,6 +118,13 @@ font-size: 20px;
 // align-items: center!important;
 // justify-content: center!important;
 display: flex!important;
+@media screen and (max-width: 640px) {
+  // flex: 1 0 25%;
+  // padding: 2px;
+  // margin: 1px;
+  font-size: 15px;
+  background: transparent;
+}
 `;
 
 
@@ -121,7 +132,6 @@ const AddFavouriteStyled = styled.div`
 // border-radius: 16px;
 position: absolute;
 // background: rgba(0, 0, 0, 0.8);
-background : #f3f5f8;
 color: #000;
 width: 20%;
 transition: 0.5s ease;
@@ -130,7 +140,13 @@ bottom: 0;
 font-size: 15px;
 right: 0;
 display: inline-block;
-
+@media screen and (max-width: 640px) {
+  // flex: 1 0 25%;
+  // padding: 2px;
+  // margin: 1px;
+  font-size: 15px;
+  background: transparent
+}
 `;
 
 const MovieTitle = styled.div`
@@ -139,12 +155,64 @@ display: inline-block;
 width: 80%;
 bottom: 0;
 left: 0;
-font-size: 15px;
+font-size: 18px;
 padding: 10px;
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
+@media screen and (max-width: 640px) {
+  // flex: 1 0 25%;
+   padding: 0px 5px;
+  // margin: 1px;
+  font-size: 15px;
+}
 `
+const WatchListIcon = styled.button`
+display: inline-block;
+font-weight: 400;
+line-height: 1.5;
+color: #dc3545;
+text-align: center;
+text-decoration: none;
+vertical-align: middle;
+cursor: pointer;
+-webkit-user-select: none;
+user-select: none;
+background-color: transparent;
+border: 1px solid transparent;
+padding: 0.375rem 0.75rem;
+font-size: 1rem;
+border-radius: 0.25rem;
+@media screen and (max-width: 640px) {
+  // flex: 1 0 25%;
+  padding: 2px;
+  margin: 1px;
+  font-size: 15px;
+}
+`;
+const WatchListAdded = styled.button`
+display: inline-block;
+font-weight: 400;
+line-height: 1.5;
+color: #212529;
+text-align: center;
+text-decoration: none;
+vertical-align: middle;
+cursor: pointer;
+-webkit-user-select: none;
+user-select: none;
+background-color: transparent;
+border: 1px solid transparent;
+padding: 0.375rem 0.75rem;
+font-size: 1rem;
+border-radius: 0.25rem;
+@media screen and (max-width: 640px) {
+  // flex: 1 0 25%;
+  padding: 2px;
+  margin: 1px;
+  font-size: 15px;
+}
+`;
 
 // const RatingIcon = styled(FontAwesomeIcon).attrs({ icon: faStar })`
 //   color: gold;
@@ -228,8 +296,8 @@ const MovieCard = props => {
         <BottomWrapper>
           <MovieTitle>{original_title}</MovieTitle>
           <AddFavouriteStyled>
-            {isShowAdd ? <button onClick={() => onAddMovie(props.movie)} class="btn btn-primary"><i class="fa fa-heart"></i></button> :
-              <button class="btn btn-danger "><i class="fa fa-heart"></i></button>}
+            {isShowAdd ? <WatchListAdded onClick={() => onAddMovie(props.movie)} ><i class="fa fa-heart"></i></WatchListAdded> :
+              <WatchListIcon><i class="fa fa-heart"></i></WatchListIcon>}
           </AddFavouriteStyled>
         </BottomWrapper>
 
